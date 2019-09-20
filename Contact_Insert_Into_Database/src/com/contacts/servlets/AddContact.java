@@ -35,7 +35,7 @@ public class AddContact extends HttpServlet {
 		//request.setAttribute("meow", contact);
 		response.sendRedirect("NewContacts.html");
 				
-		//WHen doing requestDispatcher, throws must be added to declaration.
+		//When doing requestDispatcher, throws must be added to declaration.
 		//This will go to our JSP
 		//request.getRequestDispatcher("showContacts.jsp").forward(request, response);
 		
