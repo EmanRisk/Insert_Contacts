@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Week11Security1</display-name>
+
+	<servlet>
+		<servlet-name>myjsp</servlet-name>
+		<jsp-file>/WEB-INF/jsps/mySecret.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>myjsp</servlet-name>
+		<url-pattern>/meow</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mywelcome</servlet-name>
+		<jsp-file>/WEB-INF/jsps/welcome.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mywelcome</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mywoof</servlet-name>
+		<servlet-class>ca.sheridancollege.servlets.SecureServlet1</servlet-class>
+			 <security-role-ref>
+			 	<role-name>manager</role-name>
+			 	<role-link>admin</role-link>
+			 </security-role-ref>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>mywoof</servlet-name>
+		<url-pattern>/woof</url-pattern>
+	</servlet-mapping>
+	
+<security-role>
+	<role-name>admin</role-name>
+</security-role>
+<security-role>
+	<role-name>member</role-name>
+</security-role>
+<security-role>
+	<role-name>guest</role-name>
+</security-role>
+
+<!--  <login-config>
+	<auth-method>BASIC</auth-method>
+</login-config> -->
+
+<login-config>
+	<auth-method>FORM</auth-method>
+	<form-login-config>
+	<form-login-page>/login.html</form-login-page>
+	<form-error-page>/Failedlogin.html</form-error-page>
+	</form-login-config>
+</login-config>
+
+<security-constraint>
+	
+	<web-resource-collection>
+		<web-resource-name>Secret</web-resource-name>
+		<url-pattern>/meow</url-pattern>
+		<url-pattern>/woof</url-pattern> 
+		<http-method>GET</http-method>
+		<http-method>POST</http-method>
+	</web-resource-collection>
+	
+	<auth-constraint>
+		<role-name>guest</role-name>
+	</auth-constraint>	
+
+<!--  
+<user-data-constraint>
+<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+</user-data-constraint> -->
+
+</security-constraint>
+
+</web-app>
