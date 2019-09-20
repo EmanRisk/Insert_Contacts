@@ -31,7 +31,7 @@ public class AddContact extends HttpServlet {
 		Contact contact = new Contact(name, phoneNumber, address, email);
 		DAOContacts.addContact(contact);
 		
-		//Store the beer bean in an attribute
+		//Store the bean in an attribute
 		//request.setAttribute("meow", contact);
 		response.sendRedirect("NewContacts.html");
 				
